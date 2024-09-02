@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post_name: MyString
+  grade: MyString
+  about: MyText
+  image: MyString
+  user_id: 1
+
+two:
+  post_name: MyString
+  grade: MyString
+  about: MyText
+  image: MyString
+  user_id: 1

@@ -1,0 +1,11 @@
+<h1>私の言語日記</h1>
+<h3>投稿詳細</h3>
+<div class="coment">
+  <p><%= @coment.coment_name %></p>
+  <p><%= @coment.grade %></p>
+  <p><%= @coment.about %></p>
+  <p><%= @coment.time %></p>
+  </div>
+
+<%= link_to "投稿一覧に戻る", coments_path %>
+<%= link_to "編集する", edit_coment_path(@coment.id) %>

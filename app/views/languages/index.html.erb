@@ -1,0 +1,43 @@
+<h1>自分の題名</h1>
+<h3>一覧ページ</h3>
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"languages",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+<%= link_to "新規投稿へ", new_language_path %>
+<div class="languages-container">
+  <% @languages.each do |t| %>
+    <div class="language">
+      <%= t.post_name %>
+      <%= t.grade %>
+      <%= t.about %>
+      <%= t.image %>
+      <%= link_to "詳細へ", language_path(t.id) %>  
+      <%= link_to "編集する", edit_language_path(t.id) %>
+      <%= button_to "削除する", language_path(t.id), method: :delete %> 
+
+      <% if t.about.present? %>
+      <%= Rinku.auto_link(t.about, :all, 'target="_blank"').html_safe %>
+      <% end %>
+      
+      <%= t.user.email %> 
+      <% t.tags.each do |tag| %>
+      <%= tag.name %>
+      <% end %>
+    
+    </div>
+    <% end %>
+    </div>
+    
+  <%= form_tag({controller:"languages",action:"index"}, method: :get) do %>
+    <% Tag.all.each do |t| %>
+        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+    <% end %>
+    <%= submit_tag '検索' %>
+<% end %>
+<%= form_tag({controller:"languages",action:"index"}, method: :get) do %>
+    <%= text_field_tag :tag %>
+    <%= submit_tag 'タグを追加' %>
+<% end %>
+</div>

@@ -1,0 +1,17 @@
+<h1>言語の記録</h1>
+<h3>一覧ページ</h3>
+<%= link_to "新規投稿へ", new_coment_path %>
+<div class="coments-container">
+  <% @coments.each do |t| %>
+    <div class="coment">
+      <%= t.coment_name %>
+      <%= t.grade %>
+      <%= t.about %>
+      <%= t.time %>
+      <%= link_to "詳細へ", coment_path(t.id) %>  
+      <%= link_to "編集する", edit_coment_path(t.id) %>
+      <%= button_to "削除する", coment_path(t.id), method: :delete %> 
+     
+    </div>
+  <% end %>
+</div>

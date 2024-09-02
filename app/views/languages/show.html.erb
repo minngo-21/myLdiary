@@ -1,0 +1,22 @@
+<h1>私の言語日記</h1>
+<h3>投稿詳細</h3>
+<div class="language">
+  <p><%= @language.post_name %></p>
+  <p><%= @language.grade %></p>
+  <p><%= @language.about %></p>
+  <p><%= @language.image %></p>
+  <p>
+    <% @language.tags.each do |tag| %>
+      <span><%= tag.name %></span>
+    <% end %>
+  </p>
+    <%= form_tag({controller:"languages",action:"index"}, method: :get) do %>
+    <% Tag.all.each do |t| %>
+        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+    <% end %>
+    <%= submit_tag '検索' %>
+<% end %>
+</div>
+
+<%= link_to "投稿一覧に戻る", languages_path %>
+<%= link_to "編集する", edit_language_path(@language.id) %>

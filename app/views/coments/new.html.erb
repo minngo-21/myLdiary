@@ -1,0 +1,30 @@
+<h1>(自分の題名)</h1>
+<h3>新規投稿ページ</h3>
+<%= form_for @coment do |f| %>
+
+# データ型がstringで自由記述の入力フォーム
+  <div class="field">
+    <%= f.label :coment_name %>
+    <%= f.text_field :coment_name, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :grade %>
+    <%= f.text_field :grade, :size => 30 %>
+  </div>
+# データ型がintegerで数字のみを入力するフォーム
+  <div class="field">
+    <%= f.label :time  %>
+    <%= f.number_field :time, :size => 10 %>
+  </div>
+
+# データ型がtextで自由記述の入力フォーム
+  <div class="field">
+    <%= f.label :about  %>
+    <%= f.text_area :about, :size => "30x2" %>
+  </div>
+
+  <%= f.submit "投稿する" %>
+<% end %>
+
+<%= link_to "一覧に戻る", coments_path %>

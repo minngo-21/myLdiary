@@ -1,0 +1,9 @@
+<%= form_for @coment do |f| %>
+  <%= f.label :body %>
+  <%= f.text_field :coment_name, :size => 140 %> 
+  <%= f.text_field :grade, :size => 140 %> 
+  <%= f.text_field :about, :size => 140 %> 
+  <%= f.text_field :time, :size => 140 %> 
+  
+  <%= f.submit "編集する" %>
+<% end %>
