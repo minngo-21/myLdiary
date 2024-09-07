@@ -66,6 +66,6 @@ class LanguagesController < ApplicationController
   end
   private
   def language_params
-    params.require(:language).permit(:post_name, :grade, :about, :image, :user_id,tag_ids:[])
+    params.require(:language).permit(:post_name, :grade, :about, :image,:urla,:user_id,tag_ids:[])
   end
 end

@@ -13,14 +13,30 @@
       <%= t.grade %>
       <%= t.about %>
       <%= t.image %>
+    
+      <% if t.urla.present? %> 
+      <%= Rinku.auto_link(t.urla, :all, 'target="_blank"').html_safe %>
+      <% end %>
+
+
+      <% if user_signed_in? %>
+      <% if current_user.already_liked?(t) %>
+          <%= button_to language_like_path(id: t.id, language_id: t.id), method: :delete do %>
+              <p>いいねを取り消す</p><%= t.likes.count %>
+          <% end %>
+      <% else %>
+          <%= button_to language_likes_path(id: t.id, language_id: t.id), method: :post do %>
+              <p>いいね</p><%= t.likes.count %>
+          <% end %>
+      <% end %>
+  <% else %>
+      <p>いいねの数 = </p><%= t.likes.count %>
+  <% end %>
       <%= link_to "詳細へ", language_path(t.id) %>  
       <%= link_to "編集する", edit_language_path(t.id) %>
       <%= button_to "削除する", language_path(t.id), method: :delete %> 
 
-      <% if t.about.present? %>
-      <%= Rinku.auto_link(t.about, :all, 'target="_blank"').html_safe %>
-      <% end %>
-      
+    
       <%= t.user.email %> 
       <% t.tags.each do |tag| %>
       <%= tag.name %>
@@ -40,4 +56,5 @@
     <%= text_field_tag :tag %>
     <%= submit_tag 'タグを追加' %>
 <% end %>
+
 </div>

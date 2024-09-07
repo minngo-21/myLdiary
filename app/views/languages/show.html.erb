@@ -5,7 +5,7 @@
   <p><%= @language.grade %></p>
   <p><%= @language.about %></p>
   <p><%= @language.image %></p>
-  <p>
+  <p><%= @language.urla %></p>
     <% @language.tags.each do |tag| %>
       <span><%= tag.name %></span>
     <% end %>
@@ -15,6 +15,26 @@
         <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
     <% end %>
     <%= submit_tag '検索' %>
+<% end %>
+<% if user_signed_in? %>
+      <% if current_user.already_liked?(@language) %>
+        <%= button_to language_like_path(@language), method: :delete do %>
+          <p>いいねを取り消す</p><%= @language.likes.count %>
+        <% end %>
+      <% else %>
+        <%= button_to language_likes_path(@language), method: :post do %>
+          <p>いいね</p><%= @language.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>いいねの数 = </p><%= @language.likes.count %>
+    <% end %>
+  <%= link_to "編集する", edit_language_path(@language.id) %>
+</div>
+
+<h2>いいねしたユーザー</h2>
+<% @language.liked_users.each do |user| %>
+  <li><%= user.email %></li>
 <% end %>
 </div>
 
